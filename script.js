@@ -9,9 +9,9 @@ navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
   }
   
   function errorLocation() {
-   
+    setupMap([0, 0])
   }
-  
+   
 
 
 function setupMap(center) {
@@ -19,6 +19,19 @@ function setupMap(center) {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: center,
-        zoom: 15
+        zoom: 16
       });
+      var nav = new mapboxgl.NavigationControl();
+map.addControl(nav, 'top-left');
+
+
+var directions = new MapboxDirections({
+    accessToken: mapboxgl.accessToken ,
+
+  });
+  
+
+  
+  map.addControl(directions, 'top-left');
 }
+
